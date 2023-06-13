@@ -4,7 +4,8 @@
   "info": {
     "singularName": "articulo",
     "pluralName": "articulos",
-    "displayName": "Articulo"
+    "displayName": "Articulo",
+    "description": ""
   },
   "options": {
     "draftAndPublish": true
@@ -12,20 +13,30 @@
   "pluginOptions": {},
   "attributes": {
     "articuloId": {
-      "type": "uid"
+      "type": "uid",
+      "targetField": "titulo"
     },
     "titulo": {
-      "type": "string"
+      "type": "string",
+      "required": true
     },
     "texto": {
-      "type": "richtext"
+      "type": "richtext",
+      "required": true
     },
     "imagenesArticulo": {
+      "type": "media",
+      "multiple": true,
+      "required": true,
       "allowedTypes": [
         "images"
-      ],
-      "type": "media",
-      "multiple": true
+      ]
+    },
+    "categoria": {
+      "type": "enumeration",
+      "enum": [
+        "Estructuras"
+      ]
     }
   }
 }

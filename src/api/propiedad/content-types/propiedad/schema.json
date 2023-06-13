@@ -14,33 +14,36 @@
   "attributes": {
     "propiedadId": {
       "type": "uid",
-      "targetField": "tituloPropiedad"
+      "targetField": "tituloPropiedad",
+      "required": true
     },
     "imagenesPortada": {
       "type": "media",
       "multiple": true,
-      "required": false,
+      "required": true,
       "allowedTypes": [
-        "images",
-        "files",
-        "videos",
-        "audios"
+        "images"
       ]
     },
     "tituloPropiedad": {
-      "type": "string"
+      "type": "string",
+      "required": true
     },
     "ubicacion": {
-      "type": "string"
+      "type": "string",
+      "required": true
     },
     "detalleMetros": {
-      "type": "decimal"
+      "type": "decimal",
+      "required": true
     },
     "detalleSeguridad": {
       "type": "enumeration",
       "enum": [
         "Seguridad 24/7"
-      ]
+      ],
+      "required": true,
+      "default": "Seguridad 24/7"
     },
     "detalleVentaRenta": {
       "type": "enumeration",
@@ -48,16 +51,20 @@
         "Venta",
         "Renta",
         "Venta/Renta"
-      ]
+      ],
+      "required": true
     },
     "descripcion": {
-      "type": "richtext"
+      "type": "richtext",
+      "required": true
     },
     "caracteristicas": {
-      "type": "richtext"
+      "type": "richtext",
+      "required": true
     },
     "requisitosIniciales": {
-      "type": "richtext"
+      "type": "richtext",
+      "required": true
     },
     "coordenadasMapa": {
       "type": "string",
@@ -66,23 +73,34 @@
     "galeria": {
       "type": "media",
       "multiple": true,
-      "required": false,
+      "required": true,
       "allowedTypes": [
-        "images",
-        "files",
-        "videos",
-        "audios"
+        "images"
       ]
     },
     "precio": {
-      "type": "decimal"
+      "type": "decimal",
+      "required": true
     },
     "tipoPrecio": {
       "type": "enumeration",
       "enum": [
         "MXN",
         "USD"
-      ]
+      ],
+      "required": true
+    },
+    "categoria": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::categoria.categoria",
+      "inversedBy": "propiedades"
+    },
+    "ciudad": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::ciudad.ciudad",
+      "inversedBy": "propiedades"
     }
   }
 }

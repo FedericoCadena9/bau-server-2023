@@ -4,7 +4,8 @@
   "info": {
     "singularName": "ciudad",
     "pluralName": "ciudades",
-    "displayName": "Ciudad"
+    "displayName": "Ciudad",
+    "description": ""
   },
   "options": {
     "draftAndPublish": true
@@ -12,17 +13,27 @@
   "pluginOptions": {},
   "attributes": {
     "ciudadId": {
-      "type": "uid"
+      "type": "uid",
+      "targetField": "nombreCiudad",
+      "required": true
     },
     "nombreCiudad": {
-      "type": "string"
+      "type": "string",
+      "required": true
     },
     "imagenCiudad": {
+      "type": "media",
+      "multiple": false,
+      "required": true,
       "allowedTypes": [
         "images"
-      ],
-      "type": "media",
-      "multiple": false
+      ]
+    },
+    "propiedades": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::propiedad.propiedad",
+      "mappedBy": "ciudad"
     }
   }
 }

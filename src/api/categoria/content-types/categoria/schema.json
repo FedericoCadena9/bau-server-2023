@@ -4,7 +4,8 @@
   "info": {
     "singularName": "categoria",
     "pluralName": "categorias",
-    "displayName": "Categoria"
+    "displayName": "Categoria",
+    "description": ""
   },
   "options": {
     "draftAndPublish": true
@@ -12,17 +13,27 @@
   "pluginOptions": {},
   "attributes": {
     "categoriaId": {
-      "type": "uid"
+      "type": "uid",
+      "targetField": "nombreCategoria",
+      "required": true
     },
     "nombreCategoria": {
-      "type": "string"
+      "type": "string",
+      "required": true
     },
     "imagenCategoria": {
+      "type": "media",
+      "multiple": false,
+      "required": true,
       "allowedTypes": [
         "images"
-      ],
-      "type": "media",
-      "multiple": false
+      ]
+    },
+    "propiedades": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::propiedad.propiedad",
+      "mappedBy": "categoria"
     }
   }
 }
