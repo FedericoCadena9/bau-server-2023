@@ -1,0 +1,88 @@
+{
+  "kind": "collectionType",
+  "collectionName": "propiedades",
+  "info": {
+    "singularName": "propiedad",
+    "pluralName": "propiedades",
+    "displayName": "propiedad",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "propiedadId": {
+      "type": "uid",
+      "targetField": "tituloPropiedad"
+    },
+    "imagenesPortada": {
+      "type": "media",
+      "multiple": true,
+      "required": false,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    },
+    "tituloPropiedad": {
+      "type": "string"
+    },
+    "ubicacion": {
+      "type": "string"
+    },
+    "detalleMetros": {
+      "type": "decimal"
+    },
+    "detalleSeguridad": {
+      "type": "enumeration",
+      "enum": [
+        "Seguridad 24/7"
+      ]
+    },
+    "detalleVentaRenta": {
+      "type": "enumeration",
+      "enum": [
+        "Venta",
+        "Renta",
+        "Venta/Renta"
+      ]
+    },
+    "descripcion": {
+      "type": "richtext"
+    },
+    "caracteristicas": {
+      "type": "richtext"
+    },
+    "requisitosIniciales": {
+      "type": "richtext"
+    },
+    "coordenadasMapa": {
+      "type": "string",
+      "required": true
+    },
+    "galeria": {
+      "type": "media",
+      "multiple": true,
+      "required": false,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    },
+    "precio": {
+      "type": "decimal"
+    },
+    "tipoPrecio": {
+      "type": "enumeration",
+      "enum": [
+        "MXN",
+        "USD"
+      ]
+    }
+  }
+}
