@@ -12,7 +12,7 @@ En la raíz del repositorio, crea tu archivo ignorado `.env` a partir de la plan
 cp .env.example .env
 ```
 
-Edita `.env` con valores propios para desarrollo. Genera valores distintos para `APP_KEYS`, `API_TOKEN_SALT`, `ADMIN_JWT_SECRET` y `JWT_SECRET`; los valores de ejemplo no son secretos utilizables. Añade también la configuración de PostgreSQL. Los valores `POSTGRES_*` inicializan el contenedor y deben corresponder a los valores `PG*` que usa Strapi:
+Edita `.env` con valores propios para desarrollo. Genera valores distintos para `APP_KEYS`, `API_TOKEN_SALT`, `ADMIN_JWT_SECRET`, `JWT_SECRET` y `TRANSFER_TOKEN_SALT`; los valores de ejemplo no son secretos utilizables. Añade también la configuración de PostgreSQL. Los valores `POSTGRES_*` inicializan el contenedor y deben corresponder a los valores `PG*` que usa Strapi:
 
 ```dotenv
 PGHOST=127.0.0.1
@@ -43,12 +43,13 @@ docker run -d \
   --name bau-server-postgres \
   --restart unless-stopped \
   --env-file .env \
+  --platform linux/amd64 \
   -p 127.0.0.1:5433:5432 \
   -v bau-server-postgres-data:/home/postgres/pgdata/data \
   timescale/timescaledb-ha:pg15.5-ts2.12.2
 ```
 
-La imagen indicada ofrece PostgreSQL 15.5, TimescaleDB 2.12.2 y Toolkit 1.17.0. Para otros requisitos, elige una imagen compatible y mantén las extensiones necesarias. La primera creación prepara una base vacía; carga tus propios datos locales solo si los necesitas.
+La opción `--platform linux/amd64` permite usar esta imagen x86_64 en Macs ARM64 mediante la emulación de Docker Desktop; también funciona en hosts amd64. La imagen indicada ofrece PostgreSQL 15.5, TimescaleDB 2.12.2 y Toolkit 1.17.0. Para otros requisitos, elige una imagen compatible y mantén las extensiones necesarias. La primera creación prepara una base vacía; carga tus propios datos locales solo si los necesitas.
 
 En reinicios posteriores, Docker suele arrancarlo automáticamente por `--restart unless-stopped`. Si está detenido, inícialo sin recrearlo:
 
@@ -83,6 +84,8 @@ npm run develop
 ```
 
 Deja ese proceso en ejecución mientras trabajas. Si el proyecto ya tiene dependencias instaladas, no hace falta repetir `npm install`.
+
+El entorno `development` desactiva SSL para la conexión PostgreSQL local y guarda los medios con el proveedor local de Strapi en `public/uploads/`. Estos overrides aplican al ejecutar `npm run develop`; no cambian la configuración de producción, que mantiene su proveedor Cloudinary. Los archivos subidos localmente se ignoran en Git y cada desarrollador conserva sus propios medios.
 
 ## 4. URLs y comprobaciones
 
